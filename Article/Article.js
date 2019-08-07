@@ -101,14 +101,96 @@ const data = [
 
   Hint: You will need to use createElement more than once here!
 
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each peice of the data object above.
-
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
-
-  Step 3: return the entire component.
-
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
-
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
+  Your function should take either an object as its one argument, or 5 separate arguments mapping to each peice of the data object above.
 
 */
+
+
+
+// const container = document.querySelector('div');
+
+// console.log(data);
+// console.log(document.querySelector('div'));
+
+window.addEventListener("load", function(event){
+
+  // console.log('Testing Query Selector:', document.querySelector('.articles'));
+  
+  const container = document.querySelector('.articles');
+
+  
+  
+  function createComponent(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  const article = document.createElement('div');
+  const arTitle = document.createElement('h2');
+  const arDate = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const expand = document.createElement('span');
+  
+  article.appendChild(arTitle);
+  article.appendChild(arDate);
+  article.appendChild(p1);
+  article.appendChild(p2);
+  article.appendChild(p3);
+  article.appendChild(expand);
+  
+  article.classList.add('article');
+  arDate.classList.add('date');
+  expand.classList.add('expandButton');
+  
+  arTitle.textContent = title;
+  arDate.textContent = date;
+  p1.textContent = firstParagraph;
+  p2.textContent = secondParagraph;
+  p3.textContent = thirdParagraph;
+
+  expand.textContent = 'Click me';
+  
+
+
+
+
+
+/*
+  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.  */
+
+  expand.addEventListener('click', e => {
+    console.log('button clicked', event.target)
+    article.classList.toggle('article-open');
+  })
+
+  // Step 3: return the entire component.
+
+  return article;
+  
+  }  
+
+    // Step 4: Map over the data, creating a component for each object and add each component to the DOM as children of the 'articles' div.
+
+    //^^Same idea here, I just used forEach instead of Map.
+
+
+  data.forEach(d => {
+    // console.log('Article created: ', d.title);
+    container.appendChild(createComponent(d.title, d.date, d.firstParagraph, d.secondParagraph, d.thirdParagraph));
+  })
+});
+
+
+
+
+
+  // Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
+
+
+data.push({
+  title: 'Where\'s The Web Go When The Power\'s Out?',
+  date: 'Aug 7th, 2019',
+  firstParagraph: `Scurvy parley prow jury mast Chain Shot ye schooner mizzenmast fire in the hole fathom. Grapple jib lee scuttle yardarm topgallant piracy square-rigged boatswain yawl. Ballast avast Brethren of the Coast furl keelhaul gally gangway grapple scourge of the seven seas spike. `,
+
+  secondParagraph: `Aye interloper keel rum nipperkin gangplank avast wherry run a rig maroon. Aye gunwalls Plate Fleet overhaul hulk weigh anchor Pieces of Eight league lanyard driver. Main sheet yo-ho-ho nipperkin swing the lead lee crack Jennys tea cup mutiny dance the hempen jig rutters barkadeer. `,
+
+  thirdParagraph: `Snow quarter poop deck code of conduct killick Cat o'nine tails trysail haul wind fore Sink me. Marooned belay rutters fire in the hole man-of-war Sink me nipper gabion yawl black spot. Port chase spanker matey fathom wench flogging bilge water Arr knave.`
+})
