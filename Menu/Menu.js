@@ -21,30 +21,44 @@ let menuItems = [
 
   window.addEventListener("load", function(event){
 
-function createMenu(newArray) {
+    let hamburger1 = document.querySelector('.menu-button');
+
+  function createMenu(newArray) {
+
+  //create the HTML structure.
   const menu = document.createElement('div');
   const uList = document.createElement('ul');
-
+  const listItem = document.createElement('li');
   menu.appendChild(uList);
+  uList.appendChild(listItem);
 
-  for (let i = 0; i< newArray.length; i++) {
+  // console.log(menu);
+
+  //Add classes.
+  menu.classList.add('menu');
+
+  //Iterate & create a list item for every menu item.
+  for (let i = 0; i < newArray.length; i++) {
     let item = document.createElement('li');
-    uList.appendChild(item);
+    item.appendChild(newArray[i]);
   }
 
-  const hamburger = document.querySelector('menu-button');
+  //Select the menu button currently on the DOM.
+  const hamburger = document.querySelector('.menu-button');
 
+  console.log(hamburger);
+  //Add a click handler to toggle 'menu-open'.
   hamburger.addEventListener('click', e => {
-    console.log('button clicked', event.target)
-    menu.classList.toggle('menu-open');
+    // console.log('button clicked', e.target)
+    menu.classList.toggle('menu--open');
+    // console.log(menu);
   })
 
   return menu;
 
-  createMenu(menuItems);
 }
-
-  })
+    hamburger1.appendChild(createMenu(menuItems));
+  });
 
   /*
   Pass the function an array as it's only argument.
