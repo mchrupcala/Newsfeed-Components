@@ -17,8 +17,36 @@ let menuItems = [
     <ul>
       {each menu item as a list item}
     </ul>
-  </div>
+  </div>   */
 
+  window.addEventListener("load", function(event){
+
+function createMenu(newArray) {
+  const menu = document.createElement('div');
+  const uList = document.createElement('ul');
+
+  menu.appendChild(uList);
+
+  for (let i = 0; i< newArray.length; i++) {
+    let item = document.createElement('li');
+    uList.appendChild(item);
+  }
+
+  const hamburger = document.querySelector('menu-button');
+
+  hamburger.addEventListener('click', e => {
+    console.log('button clicked', event.target)
+    menu.classList.toggle('menu-open');
+  })
+
+  return menu;
+
+  createMenu(menuItems);
+}
+
+  })
+
+  /*
   Pass the function an array as it's only argument.
 
   Step 2: Iterate over the array creating a list item <li> element for each item in the array. 
@@ -33,3 +61,4 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
+
