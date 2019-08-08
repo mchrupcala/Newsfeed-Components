@@ -151,8 +151,6 @@ window.addEventListener("load", function(event){
 
 
 
-
-
 /*
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.  */
 
